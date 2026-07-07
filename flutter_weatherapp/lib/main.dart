@@ -63,7 +63,14 @@ class _WeatherScreenState extends State<WeatherScreen> {
     try{
       final response = await http.get(Uri.parse(Uri.decodeFull(url)));
 
-      if
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        final items = data['response']['body']['items']['item'] as List;
+
+        final tempItem = items.firstWhere((item) => item['category'] == 'T1H', orElse: () => null);
+
+        if (tempItem != null) {}
+      }
     }
 
   }
