@@ -5,10 +5,9 @@ import seaborn as sns
 
 df = pd.read_csv("2022temprain.csv")
 
-print(df.head())
+print(df.corr(numeric_only=True).round(2))
 
-# 1. 시본으로 페어플롯 생성
-sns.pairplot(df)
+plt.title("상관 관계")
 
-# 2. 화면에 실제 그래프 창을 띄우는 핵심 명령어!
+sns.heatmap(df.corr(numeric_only=True), annot = True)
 plt.show()
